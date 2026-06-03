@@ -1,0 +1,8 @@
+# Claude Code internal config
+.claude/
+
+# macOS
+.DS_Store
+
+# Reference / scratch files
+samInspo.PNG

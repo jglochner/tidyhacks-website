@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>TidyHacks — the best Amazon home & kitchen finds</title>
+<meta name="description" content="TidyHacks — handpicked Amazon home, kitchen and cleaning gadgets. Search the products and grab the links.">
+<meta property="og:title" content="TidyHacks">
+<meta property="og:description" content="Sharing the best Amazon finds ✨">
+<meta property="og:type" content="website">
+<style>
+  :root {
+    --purple:#8b6ff0; --purple-dark:#6c4fd6; --purple-soft:#a78bfa;
+    --bg:#b9a7f4; --card:#ffffff; --ink:#1f1a33; --muted:#6b6480;
+    --line:#ece8fb; --shadow:0 6px 22px rgba(60,40,120,.12);
+  }
+  * { box-sizing:border-box; }
+  html, body { margin:0; }
+  body {
+    font:16px/1.5 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    color:var(--ink);
+    background:linear-gradient(180deg,#c4b4f7 0%, #b9a7f4 280px, #f4f1fe 280px, #f4f1fe 100%);
+    background-attachment:fixed;
+    min-height:100vh;
+  }
+  .wrap { max-width:680px; margin:0 auto; padding:28px 18px 60px; }
+
+  /* ---- header ---- */
+  .profile { text-align:center; color:#2a2342; }
+  .avatar {
+    width:128px; height:128px; border-radius:50%; object-fit:cover;
+    border:4px solid #fff; box-shadow:var(--shadow); margin:6px auto 14px; display:block;
+  }
+  .name { font-size:30px; font-weight:800; letter-spacing:-.5px; margin:0; }
+  .tagline { font-size:16px; margin:8px 0 16px; color:#3a3157; }
+  .socials { display:flex; justify-content:center; gap:18px; margin-bottom:6px; }
+  .socials a {
+    width:42px; height:42px; border-radius:50%; background:rgba(255,255,255,.55);
+    display:flex; align-items:center; justify-content:center; color:#2a2342;
+    transition:.15s; text-decoration:none;
+  }
+  .socials a:hover { background:#fff; transform:translateY(-2px); }
+  .socials svg { width:20px; height:20px; display:block; }
+
+  /* ---- search ---- */
+  .banner {
+    background:#fff; border-radius:14px; box-shadow:var(--shadow);
+    text-align:center; font-weight:700; padding:16px; margin:26px 0 14px; color:var(--ink);
+  }
+  .search {
+    position:relative; margin-bottom:22px;
+  }
+  .search input {
+    width:100%; border:none; border-radius:30px; background:#fff;
+    padding:16px 46px 16px 48px; font:inherit; color:var(--ink);
+    box-shadow:var(--shadow); outline:2px solid transparent; transition:outline-color .15s;
+  }
+  .search input:focus { outline-color:var(--purple); }
+  .search .icon { position:absolute; left:18px; top:50%; transform:translateY(-50%); color:var(--muted); width:18px; height:18px; }
+  .search .clear {
+    position:absolute; right:12px; top:50%; transform:translateY(-50%);
+    border:none; background:#efeafd; color:var(--muted); width:28px; height:28px;
+    border-radius:50%; cursor:pointer; font-size:15px; line-height:1; display:none;
+  }
+  .search .clear:hover { background:#e3dbfb; }
+  .search.has-text .clear { display:block; }
+
+  /* ---- grid ---- */
+  .grid { display:grid; grid-template-columns:repeat(2,1fr); gap:14px; }
+  @media (max-width:430px){ .grid { grid-template-columns:1fr; } }
+
+  .card {
+    background:var(--card); border-radius:16px; overflow:hidden; box-shadow:var(--shadow);
+    display:flex; flex-direction:column; transition:transform .15s, box-shadow .15s;
+  }
+  .card:hover { transform:translateY(-3px); box-shadow:0 12px 30px rgba(60,40,120,.18); }
+  .thumb {
+    position:relative; aspect-ratio:1/1;
+    background:#f3f0fb url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="%23cfc6ee"><rect width="40" height="40" rx="6"/></svg>') center/40px no-repeat;
+  }
+  .thumb img { position:absolute; inset:0; width:100%; height:100%; object-fit:contain; padding:10px; }
+  .card-body { padding:12px 13px 14px; display:flex; flex-direction:column; gap:10px; flex:1; }
+  .card-title { font-size:15px; font-weight:700; line-height:1.3; margin:0; flex:1; }
+  .card-niche { font-size:12px; color:var(--muted); text-transform:capitalize; margin:-4px 0 0; }
+  .btn {
+    display:block; text-align:center; text-decoration:none; font-weight:700; font-size:14px;
+    background:var(--purple); color:#fff; padding:11px 12px; border-radius:11px; transition:.15s;
+  }
+  .btn:hover { background:var(--purple-dark); }
+
+  .empty { text-align:center; color:var(--muted); padding:40px 10px; grid-column:1/-1; }
+  .footer { text-align:center; color:#7c7498; font-size:12px; margin-top:34px; }
+  .footer .disc { max-width:520px; margin:8px auto 0; line-height:1.5; }
+</style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="profile">
+      <img class="avatar" src="images/avatar.png" alt="TidyHacks logo">
+      <h1 class="name">TidyHacks</h1>
+      <p class="tagline">✨ Sharing the best Amazon finds ✨</p>
+      <nav class="socials" aria-label="Social links">
+        <a href="https://instagram.com/tidyhacks_" target="_blank" rel="noopener" aria-label="Instagram">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1.2" fill="currentColor" stroke="none"/></svg>
+        </a>
+        <a href="https://tiktok.com/@tidyhacks_" target="_blank" rel="noopener" aria-label="TikTok">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M16.5 3c.3 2.1 1.6 3.7 3.7 3.9v2.4c-1.2.1-2.4-.2-3.5-.8v5.9c0 3-2.2 5.2-5.1 5.2A5 5 0 0 1 6.5 14c.1-2.6 2.2-4.7 4.8-4.7.3 0 .5 0 .8.1v2.5c-.3-.1-.5-.1-.8-.1a2.3 2.3 0 0 0 .1 4.6 2.3 2.3 0 0 0 2.3-2.4V3h2.8z"/></svg>
+        </a>
+      </nav>
+    </div>
+
+    <div class="banner">▼ Search all the products below ▼</div>
+
+    <div class="search" id="searchWrap">
+      <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+      <input id="search" type="search" placeholder="Search products…" autocomplete="off" aria-label="Search products">
+      <button class="clear" id="clear" aria-label="Clear search">✕</button>
+    </div>
+
+    <div class="grid" id="grid"></div>
+
+    <div class="footer">
+      <div>© <span id="year"></span> TidyHacks</div>
+      <div class="disc">As an Amazon Associate, TidyHacks earns from qualifying purchases.</div>
+    </div>
+  </div>
+
+<script>
+  const grid = document.getElementById('grid');
+  const search = document.getElementById('search');
+  const clearBtn = document.getElementById('clear');
+  const searchWrap = document.getElementById('searchWrap');
+  document.getElementById('year').textContent = new Date().getFullYear();
+
+  let products = [];
+
+  function render(list) {
+    if (!list.length) {
+      grid.innerHTML = '<div class="empty">No products match your search.</div>';
+      return;
+    }
+    grid.innerHTML = list.map(p => {
+      const link = p.links && p.links.us ? p.links.us : (p.links && p.links.uk) || '#';
+      const img = p.image_url
+        ? `<img src="${p.image_url}" alt="${escapeHtml(p.product_name)}" loading="lazy" referrerpolicy="no-referrer">`
+        : '';
+      return `
+        <article class="card">
+          <div class="thumb">${img}</div>
+          <div class="card-body">
+            <h2 class="card-title">${escapeHtml(p.product_name)}</h2>
+            ${p.niche ? `<p class="card-niche">${escapeHtml(p.niche)}</p>` : ''}
+            <a class="btn" href="${link}" target="_blank" rel="noopener sponsored nofollow">View on Amazon →</a>
+          </div>
+        </article>`;
+    }).join('');
+  }
+
+  function filter() {
+    const q = search.value.trim().toLowerCase();
+    searchWrap.classList.toggle('has-text', q.length > 0);
+    if (!q) return render(products);
+    render(products.filter(p =>
+      (p.product_name || '').toLowerCase().includes(q) ||
+      (p.niche || '').toLowerCase().includes(q)
+    ));
+  }
+
+  function escapeHtml(s) {
+    return String(s).replace(/[&<>"']/g, c =>
+      ({ '&':'&amp;', '<':'&lt;', '>':'&gt;', '"':'&quot;', "'":'&#39;' }[c]));
+  }
+
+  search.addEventListener('input', filter);
+  clearBtn.addEventListener('click', () => { search.value = ''; filter(); search.focus(); });
+
+  fetch('products.json')
+    .then(r => r.json())
+    .then(data => { products = data.products || []; render(products); })
+    .catch(() => { grid.innerHTML = '<div class="empty">Could not load products.</div>'; });
+</script>
+</body>
+</html>

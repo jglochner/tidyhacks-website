@@ -1,0 +1,74 @@
+{
+  "_meta": {
+    "brand": "TidyHacks",
+    "handle_ig": "@tidyhacks_",
+    "generated_by": "scripts/build_site.py"
+  },
+  "products": [
+    {
+      "id": 1,
+      "product_name": "Foaming Drain Cleaner",
+      "niche": "bathroom cleaning",
+      "asin": "B00E4NMQ6U",
+      "image_url": "images/products/B00E4NMQ6U.jpg",
+      "links": {
+        "us": "https://a.co/d/0bB8UCdz",
+        "uk": "https://amzn.eu/d/0iMdZhP2",
+        "us_title": "🇺🇸 US Link →",
+        "uk_title": "🇬🇧 UK Link →"
+      }
+    },
+    {
+      "id": 2,
+      "product_name": "Silicone Ice Cube Tray",
+      "niche": "kitchen gadgets",
+      "asin": "B0D8PSDMYH",
+      "image_url": "images/products/B0D8PSDMYH.jpg",
+      "links": {
+        "us": "https://a.co/d/03qs3xRi",
+        "uk": "https://amzn.eu/d/0a30eAy2",
+        "us_title": "🇺🇸 US Link →",
+        "uk_title": "🇬🇧 UK Link →"
+      }
+    },
+    {
+      "id": 3,
+      "product_name": "Vegetable Chopper (6-in-1)",
+      "niche": "kitchen gadgets",
+      "asin": "B0BHSXFTGH",
+      "image_url": "images/products/B0BHSXFTGH.jpg",
+      "links": {
+        "us": "https://a.co/d/01cp8euD",
+        "uk": "https://amzn.eu/d/08zdIyxs",
+        "us_title": "🇺🇸 US Link →",
+        "uk_title": "🇬🇧 UK Link →"
+      }
+    },
+    {
+      "id": 4,
+      "product_name": "Olive Oil Sprayer/Mister",
+      "niche": "kitchen gadgets",
+      "asin": "B0D54PM77N",
+      "image_url": "images/products/B0D54PM77N.jpg",
+      "links": {
+        "us": "https://a.co/d/039PT3FP",
+        "uk": "https://amzn.eu/d/0j8IFaSk",
+        "us_title": "🇺🇸 US Link →",
+        "uk_title": "🇬🇧 UK Link →"
+      }
+    },
+    {
+      "id": 5,
+      "product_name": "Diatomite Bath Mat",
+      "niche": "bathroom",
+      "asin": "B0F886H7GZ",
+      "image_url": "images/products/B0F886H7GZ.jpg",
+      "links": {
+        "us": "https://a.co/d/0dAaaKGM",
+        "uk": "https://amzn.eu/d/0jlFxWqn",
+        "us_title": "🇺🇸 US Link →",
+        "uk_title": "🇬🇧 UK Link →"
+      }
+    }
+  ]
+}
