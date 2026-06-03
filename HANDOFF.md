@@ -123,13 +123,32 @@ To add them: edit `../tidyHacks/data/products.json` (or use the Studio at
 
 ### 1. Deploy to Netlify + point `tidyhacks.co` DNS
 
-The site is **fully built and tested locally** but not yet live. Jonas is logged into
-both Netlify and Porkbun in Chrome — drive the browser to deploy:
+The site is **fully built, tested locally, and already pushed to GitHub** — ready to
+go live in about 5 minutes.
 
-- Drag-and-drop the `tidyHacksWebsite/` folder into Netlify (or connect the GitHub repo)
-- In Porkbun DNS, point `tidyhacks.co` CNAME/A record at the Netlify domain
-- Netlify free tier is sufficient — 5 product images (~200KB total per page load) will
-  never come close to the 100GB/month free bandwidth limit
+**GitHub repo:** https://github.com/jglochner/tidyhacks-website
+
+#### Fastest deploy path (recommended — 2 clicks in Netlify):
+1. Go to https://app.netlify.com → **"Add new site" → "Import an existing project"**
+2. Choose **GitHub** → select **`jglochner/tidyhacks-website`**
+3. Leave all build settings blank (it's a static site — no build command needed)
+4. Click **Deploy** — Netlify serves it straight from the repo
+
+**Why this is better than drag-and-drop:** every future `git push` automatically
+redeploys the site. Add products in the engine, run `build_site.py`, commit and push —
+the live site updates with no manual steps.
+
+#### Then point the domain (Porkbun):
+- In Netlify: Site settings → Domain management → Add custom domain → `tidyhacks.co`
+- Netlify will give you a CNAME value (e.g. `your-site.netlify.app`)
+- In Porkbun DNS: add/update a CNAME record for `tidyhacks.co` pointing at that value
+- HTTPS is provisioned automatically by Netlify (free)
+
+Jonas is already logged into both Netlify and Porkbun in Chrome — a Claude session
+can drive the browser to do all of this if needed.
+
+**Cost:** Netlify free tier = 100GB bandwidth/month. 5 product images = ~200KB per
+page load. You'd need 500,000 visits/month to exceed it. Effectively free.
 
 ### 2. Add affiliate links for products #6 & #7
 
