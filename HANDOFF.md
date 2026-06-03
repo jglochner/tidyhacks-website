@@ -55,7 +55,16 @@ python3 -m http.server 8777
 # Then open: http://127.0.0.1:8777/
 ```
 
-Or use the Claude Code Launch preview (`.claude/launch.json` is configured on :8778).
+---
+
+## Live site
+
+- **Production URL:** https://tidyhacks.co
+- **Netlify URL:** https://tidyhacks-website.netlify.app
+- **GitHub repo:** https://github.com/jglochner/tidyhacks-website
+- **Hosting:** Netlify free tier (connected to GitHub — every `git push` to `main` auto-deploys)
+- **DNS:** Porkbun — ALIAS `tidyhacks.co` → `apex-loadbalancer.netlify.com`, CNAME `www` → `tidyhacks-website.netlify.app`
+- **HTTPS:** Provisioned automatically by Netlify (Let's Encrypt)
 
 ---
 
@@ -71,15 +80,15 @@ python3 scripts/build_site.py
 This script:
 1. Reads `../tidyHacks/data/products.json` (the single source of truth)
 2. Follows each affiliate short link → resolves the Amazon ASIN
-3. Scrapes the main product image from the Amazon page (browser headers required — bare requests get blocked)
-4. **Downloads the image** to `tidyHacksWebsite/images/products/<ASIN>.jpg` (local, no Amazon CDN dependency after first run)
+3. Scrapes the main product image from the Amazon page
+4. Downloads the image to `tidyHacksWebsite/images/products/<ASIN>.jpg`
 5. Rewrites `tidyHacksWebsite/products.json` with local image paths
 
-**Important notes on image scraping:**
-- Amazon rate-limits rapid batch requests. The script has 5s gaps + a 20s-cooldown second pass to handle this.
-- Already-downloaded images are skipped on subsequent runs (cached by ASIN filename).
-- If a product gets no image after retries, it falls back to the remote CDN URL gracefully.
-- The script is at `../tidyHacks/scripts/build_site.py`.
+After running, commit and push:
+```bash
+git add -A && git commit -m "Update products" && git push
+```
+Netlify deploys automatically within ~30 seconds.
 
 ---
 
@@ -100,9 +109,6 @@ Currently 7 products:
 | 7 | Cordless Mini Handheld Vacuum | prompt-ready | ❌ missing | ❌ missing | ⏳ needs links first |
 
 **Products #6 & #7 are excluded from the live site** until affiliate links are added.
-To add them: edit `../tidyHacks/data/products.json` (or use the Studio at
-`python3 ../tidyHacks/scripts/server.py` → http://localhost:8765), then rerun
-`build_site.py`.
 
 ---
 
@@ -110,54 +116,49 @@ To add them: edit `../tidyHacks/data/products.json` (or use the Studio at
 
 - Loads `products.json` via `fetch()` on page load
 - Renders a **responsive 2-column card grid** (1 column on narrow phones)
-- Each card: product image (square thumbnail), name, niche tag, "View on Amazon →" button
+- Each card: product image (square thumbnail, **clickable**), name, niche tag, "View on Amazon →" button
+- Both the image AND the button link to the Amazon affiliate URL
 - **Live search** filters by product name and niche as you type
 - Clear (✕) button resets search
 - Social icons: Instagram `instagram.com/tidyhacks_`, TikTok `tiktok.com/@tidyhacks_`
 - Amazon Associate disclosure in footer
-- Links: **US only** for v1 (`links.us` field). UK links are stored in the data but not surfaced. Deferred to **genius links** (geo-routing US→a.co, UK→amzn.eu) in a future pass.
+- Links: **US only** for v1. UK links are stored in data but not surfaced (deferred to genius links)
+
+---
+
+## Analytics — PostHog
+
+- **Platform:** PostHog EU Cloud (GDPR-friendly)
+- **Account:** `jonaslochner@hotmail.com`
+- **Dashboard:** https://eu.posthog.com/project/193147
+- **Project name:** TidyHacks.Co (was "Default project")
+- **Organisation:** Tidy Hacks
+- **Project token:** `phc_wkWTdKNX3a9aJbsvNacDvH87dTotVpnsdGGeePWp3W7F`
+- **Features enabled:** Pageview tracking, session recordings (all sessions), console log capture
+- **Free tier limits:** 1M events/month, 5K session recordings/month — very unlikely to hit these
+
+The PostHog snippet is in `index.html` just after the `<title>` tag. To verify tracking is working, visit `tidyhacks.co` and check the Live Events feed in PostHog.
 
 ---
 
 ## What's NOT done yet (immediate next steps)
 
-### 1. Deploy to Netlify + point `tidyhacks.co` DNS
+### 1. ⚡ Amazon Associates application — DO THIS FIRST
 
-The site is **fully built, tested locally, and already pushed to GitHub** — ready to
-go live in about 5 minutes.
+The site is live at `tidyhacks.co` with HTTPS. You are now ready to apply.
 
-**GitHub repo:** https://github.com/jglochner/tidyhacks-website
-
-#### Fastest deploy path (recommended — 2 clicks in Netlify):
-1. Go to https://app.netlify.com → **"Add new site" → "Import an existing project"**
-2. Choose **GitHub** → select **`jglochner/tidyhacks-website`**
-3. Leave all build settings blank (it's a static site — no build command needed)
-4. Click **Deploy** — Netlify serves it straight from the repo
-
-**Why this is better than drag-and-drop:** every future `git push` automatically
-redeploys the site. Add products in the engine, run `build_site.py`, commit and push —
-the live site updates with no manual steps.
-
-#### Then point the domain (Porkbun):
-- In Netlify: Site settings → Domain management → Add custom domain → `tidyhacks.co`
-- Netlify will give you a CNAME value (e.g. `your-site.netlify.app`)
-- In Porkbun DNS: add/update a CNAME record for `tidyhacks.co` pointing at that value
-- HTTPS is provisioned automatically by Netlify (free)
-
-Jonas is already logged into both Netlify and Porkbun in Chrome — a Claude session
-can drive the browser to do all of this if needed.
-
-**Cost:** Netlify free tier = 100GB bandwidth/month. 5 product images = ~200KB per
-page load. You'd need 500,000 visits/month to exceed it. Effectively free.
+- Go to: https://affiliate-program.amazon.co.uk (UK) or https://affiliate-program.amazon.com (US)
+- Requirements met: ✅ live website, ✅ original content, ✅ affiliate-style layout
+- After approval: make **3 qualifying sales within 180 days** to keep the account active
+- Once approved: replace the existing short links in `../tidyHacks/data/products.json` with your official Associates tracking links and rebuild
 
 ### 2. Add affiliate links for products #6 & #7
 
-Jonas needs to find and add US/UK Amazon affiliate links for:
+Jonas needs to find US/UK Amazon affiliate links for:
 - Handheld Vacuum Sealer
 - Cordless Mini Handheld Vacuum
 
-Add them via the Studio (`python3 ../tidyHacks/scripts/server.py`), then run
-`build_site.py` to scrape images and update the site.
+Add them via the Studio (`python3 ../tidyHacks/scripts/server.py` → http://localhost:8765), then run `build_site.py`, commit, and push.
 
 ### 3. Genius links (geo-routing) — future
 
@@ -166,36 +167,25 @@ Currently US links only. When Jonas sets up Geniuslink/Geni.us:
 - `build_site.py` will need a `genius_link` field in the schema
 - The button label changes from "View on Amazon →" to something region-neutral
 
-### 4. Amazon Associates application
-
-The site is built specifically to support the application. Requirements:
-- ✅ Working website you own (`tidyhacks.co`)
-- ✅ Original content (your product selections + captions from the engine)
-- ✅ Affiliate-style content clearly visible
-- ⏳ Site must be **live on the domain** before applying
-- ⏳ After approval, make **3 qualifying sales within 180 days** to keep the account
-
 ---
 
 ## Branding
 
 - **Handle:** `@tidyhacks_` on Instagram and TikTok
-- **Avatar:** purple "TH" monogram logo (`images/avatar.png`) — downloaded from Beacons CDN
-- **Colour:** `#8b6ff0` (brand purple), matches existing Beacons page
+- **Avatar:** purple "TH" monogram logo (`images/avatar.png`)
+- **Colour:** `#8b6ff0` (brand purple)
 - **Current live Beacons page:** https://beacons.ai/tidyhacks (the old link-in-bio being replaced)
 
 ---
 
 ## The engine (sibling project)
 
-The `../tidyHacks/` project is the content production engine. It's a separate concern
-but feeds this website. Key things to know:
+The `../tidyHacks/` project is the content production engine:
 
 - `data/products.json` — source of truth, edit here or via the Studio
 - `scripts/server.py` — local Studio UI (browse/edit products, AI-generate prompts)
-- `scripts/build_site.py` — the script that generates this website's data
+- `scripts/build_site.py` — generates this website's data + downloads images
 - `scripts/build.py` — generates CSV + markdown for Google Sheets and Seedance
-- The engine has its own `README.md` with full documentation
 
 ---
 
@@ -203,8 +193,10 @@ but feeds this website. Key things to know:
 
 | Decision | What | Why |
 |----------|------|-----|
-| No framework | Vanilla HTML/CSS/JS | Matches engine's stdlib-only ethos; zero build step; deploys as flat files |
-| Local images | Downloaded to `images/products/` | No Amazon CDN dependency; self-contained Netlify deploy; free |
-| US links only | Single "View on Amazon" button | Simplicity for v1; UK retained in data for genius links later |
+| No framework | Vanilla HTML/CSS/JS | Zero build step; deploys as flat files |
+| Local images | Downloaded to `images/products/` | No Amazon CDN dependency; self-contained |
+| US links only | Single "View on Amazon" button | Simplicity for v1; UK retained for genius links later |
 | Static site | No server, no DB | Free hosting; nothing to maintain; fast everywhere |
-| `products.json` copy | Website has its own generated data file | Decouples deploy from the engine; engine stays the source of truth |
+| Netlify + GitHub | CI/CD deploy | Every `git push` auto-deploys; no manual steps |
+| PostHog EU | Analytics | Free tier generous; EU cloud = GDPR-compliant; session replay included |
+| Clickable images | `<a>` wraps `.thumb` div | Larger click target; better UX; same affiliate link as button |
