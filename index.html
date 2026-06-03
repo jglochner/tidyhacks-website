@@ -86,6 +86,7 @@
     position:relative; aspect-ratio:1/1;
     background:#f3f0fb url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="%23cfc6ee"><rect width="40" height="40" rx="6"/></svg>') center/40px no-repeat;
   }
+  .thumb { cursor:pointer; }
   .thumb img { position:absolute; inset:0; width:100%; height:100%; object-fit:contain; padding:10px; }
   .card-body { padding:12px 13px 14px; display:flex; flex-direction:column; gap:10px; flex:1; }
   .card-title { font-size:15px; font-weight:700; line-height:1.3; margin:0; flex:1; }
@@ -154,7 +155,7 @@
         : '';
       return `
         <article class="card">
-          <div class="thumb">${img}</div>
+          <a class="thumb" href="${link}" target="_blank" rel="noopener sponsored nofollow" aria-label="View ${escapeHtml(p.product_name)} on Amazon">${img}</a>
           <div class="card-body">
             <h2 class="card-title">${escapeHtml(p.product_name)}</h2>
             ${p.niche ? `<p class="card-niche">${escapeHtml(p.niche)}</p>` : ''}
