@@ -69,6 +69,19 @@
         "us_title": "🇺🇸 US Link →",
         "uk_title": "🇬🇧 UK Link →"
       }
+    },
+    {
+      "id": 6,
+      "product_name": "Handheld Vacuum Sealer",
+      "niche": "kitchen gadgets",
+      "asin": "B0D3ZBFMW6",
+      "image_url": "images/products/B0D3ZBFMW6.jpg",
+      "links": {
+        "us": "https://www.amazon.com/dp/B0D3ZBFMW6",
+        "uk": "https://amzn.eu/d/05W3zSgL",
+        "us_title": "🇺🇸 US Link →",
+        "uk_title": "🇬🇧 UK Link →"
+      }
     }
   ]
 }
