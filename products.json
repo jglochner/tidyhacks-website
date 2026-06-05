@@ -12,10 +12,11 @@
       "asin": "B00E4NMQ6U",
       "image_url": "images/products/B00E4NMQ6U.jpg",
       "links": {
-        "us": "https://a.co/d/0bB8UCdz",
+        "us": "https://www.amazon.com/dp/B00E4NMQ6U",
         "uk": "https://amzn.eu/d/0iMdZhP2",
         "us_title": "🇺🇸 US Link →",
-        "uk_title": "🇬🇧 UK Link →"
+        "uk_title": "🇬🇧 UK Link →",
+        "genius": "https://geni.us/L8t6aHw"
       }
     },
     {
@@ -25,10 +26,11 @@
       "asin": "B0D8PSDMYH",
       "image_url": "images/products/B0D8PSDMYH.jpg",
       "links": {
-        "us": "https://a.co/d/03qs3xRi",
+        "us": "https://www.amazon.com/dp/B0D8PSDMYH",
         "uk": "https://amzn.eu/d/0a30eAy2",
         "us_title": "🇺🇸 US Link →",
-        "uk_title": "🇬🇧 UK Link →"
+        "uk_title": "🇬🇧 UK Link →",
+        "genius": "https://geni.us/qUtyITi"
       }
     },
     {
@@ -38,10 +40,11 @@
       "asin": "B0BHSXFTGH",
       "image_url": "images/products/B0BHSXFTGH.jpg",
       "links": {
-        "us": "https://a.co/d/01cp8euD",
+        "us": "https://www.amazon.com/dp/B0BHSXFTGH",
         "uk": "https://amzn.eu/d/08zdIyxs",
         "us_title": "🇺🇸 US Link →",
-        "uk_title": "🇬🇧 UK Link →"
+        "uk_title": "🇬🇧 UK Link →",
+        "genius": "https://geni.us/mbMGYFa"
       }
     },
     {
@@ -51,10 +54,11 @@
       "asin": "B0D54PM77N",
       "image_url": "images/products/B0D54PM77N.jpg",
       "links": {
-        "us": "https://a.co/d/039PT3FP",
+        "us": "https://www.amazon.com/dp/B0D54PM77N",
         "uk": "https://amzn.eu/d/0j8IFaSk",
         "us_title": "🇺🇸 US Link →",
-        "uk_title": "🇬🇧 UK Link →"
+        "uk_title": "🇬🇧 UK Link →",
+        "genius": "https://geni.us/4P0wrC"
       }
     },
     {
@@ -64,10 +68,11 @@
       "asin": "B0F886H7GZ",
       "image_url": "images/products/B0F886H7GZ.jpg",
       "links": {
-        "us": "https://a.co/d/0dAaaKGM",
+        "us": "https://www.amazon.com/dp/B0F886H7GZ",
         "uk": "https://amzn.eu/d/0jlFxWqn",
         "us_title": "🇺🇸 US Link →",
-        "uk_title": "🇬🇧 UK Link →"
+        "uk_title": "🇬🇧 UK Link →",
+        "genius": "https://geni.us/awYtjQ"
       }
     },
     {
@@ -80,7 +85,8 @@
         "us": "https://www.amazon.com/dp/B0D3ZBFMW6",
         "uk": "https://amzn.eu/d/05W3zSgL",
         "us_title": "🇺🇸 US Link →",
-        "uk_title": "🇬🇧 UK Link →"
+        "uk_title": "🇬🇧 UK Link →",
+        "genius": "https://geni.us/DCAelIM"
       }
     },
     {
@@ -90,10 +96,11 @@
       "asin": "",
       "image_url": "images/products/7_custom.jpg",
       "links": {
-        "us": "https://a.co/d/00gzd29s",
+        "us": "https://www.amazon.com/dp/B01DAI5BZ2",
         "uk": "https://amzn.eu/d/001McLPO",
         "us_title": "🇺🇸 US Link →",
-        "uk_title": "🇬🇧 UK Link →"
+        "uk_title": "🇬🇧 UK Link →",
+        "genius": "https://geni.us/5KiomV5"
       }
     }
   ]

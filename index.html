@@ -151,7 +151,7 @@
       return;
     }
     grid.innerHTML = list.map(p => {
-      const link = p.links && p.links.us ? p.links.us : (p.links && p.links.uk) || '#';
+      const link = (p.links && p.links.genius) || (p.links && p.links.us) || (p.links && p.links.uk) || '#';
       const img = p.image_url
         ? `<img src="${p.image_url}" alt="${escapeHtml(p.product_name)}" loading="lazy" referrerpolicy="no-referrer">`
         : '';
