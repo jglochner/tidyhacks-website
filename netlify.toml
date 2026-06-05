@@ -1,0 +1,19 @@
+# Reverse proxy for PostHog (EU cloud).
+# Routes analytics through tidyhacks.co/ingest so ad blockers — which target
+# *.i.posthog.com — stop silently dropping ~10-25% of events.
+# The website inits PostHog with api_host: '/ingest' (see index.html).
+#
+# Order matters: the more specific /ingest/static/* rule must come before the
+# catch-all /ingest/* rule, and static assets go to the separate assets host.
+
+[[redirects]]
+  from = "/ingest/static/*"
+  to = "https://eu-assets.i.posthog.com/static/:splat"
+  status = 200
+  force = true
+
+[[redirects]]
+  from = "/ingest/*"
+  to = "https://eu.i.posthog.com/:splat"
+  status = 200
+  force = true
