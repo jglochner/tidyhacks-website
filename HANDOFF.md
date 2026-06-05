@@ -1,5 +1,5 @@
 # TidyHacks Website — Handoff Notes
-*Last updated: June 2026 — pick up from here*
+*Last updated: June 2026 — site is LIVE at https://tidyhacks.co*
 
 ---
 
@@ -40,6 +40,7 @@ tidyHacksWebsite/
 │       ├── B0BHSXFTGH.jpg   ← Vegetable Chopper
 │       ├── B0D54PM77N.jpg   ← Olive Oil Sprayer/Mister
 │       └── B0F886H7GZ.jpg   ← Diatomite Bath Mat
+├── netlify.toml             ← Netlify config: PostHog reverse-proxy rewrites
 ├── samInspo.PNG             ← Reference design (c8ke.com/samfindz screenshot)
 └── HANDOFF.md               ← This file
 ```
@@ -105,10 +106,10 @@ Currently 7 products:
 | 3 | Vegetable Chopper (6-in-1) | posted | ✅ | ✅ | ✅ downloaded |
 | 4 | Olive Oil Sprayer/Mister | posted | ✅ | ✅ | ✅ downloaded |
 | 5 | Diatomite Bath Mat | posted | ✅ | ✅ | ✅ downloaded |
-| 6 | Handheld Vacuum Sealer | prompt-ready | ❌ missing | ❌ missing | ⏳ needs links first |
+| 6 | Handheld Vacuum Sealer | posted | ✅ | ✅ | ✅ downloaded |
 | 7 | Cordless Mini Handheld Vacuum | prompt-ready | ❌ missing | ❌ missing | ⏳ needs links first |
 
-**Products #6 & #7 are excluded from the live site** until affiliate links are added.
+**6 products are now live on the site.** Product #7 is excluded until affiliate links are added.
 
 ---
 
@@ -137,6 +138,28 @@ Currently 7 products:
 - **Features enabled:** Pageview tracking, session recordings (all sessions), console log capture
 - **Free tier limits:** 1M events/month, 5K session recordings/month — very unlikely to hit these
 
+**Custom `amazon_click` event** fires on every "View on Amazon" button click with these properties:
+```
+product_name, niche, asin, click_target
+```
+Filter or break down by these in the PostHog dashboard to see which products drive the most clicks.
+
+**Ad-blocker reverse proxy:** PostHog requests are routed through `tidyhacks.co/ingest`
+rather than directly to PostHog's servers, so ad blockers don't silently drop events. This
+is configured as a rewrite rule in `netlify.toml` (in the repo root):
+```toml
+[[redirects]]
+  from = "/ingest/static/*"
+  to = "https://eu-assets.i.posthog.com/static/:splat"
+  status = 200
+
+[[redirects]]
+  from = "/ingest/*"
+  to = "https://eu.i.posthog.com/:splat"
+  status = 200
+```
+Do not remove these — without them, a significant portion of analytics events will be lost.
+
 The PostHog snippet is in `index.html` just after the `<title>` tag. To verify tracking is working, visit `tidyhacks.co` and check the Live Events feed in PostHog.
 
 ---
@@ -152,11 +175,10 @@ The site is live at `tidyhacks.co` with HTTPS. You are now ready to apply.
 - After approval: make **3 qualifying sales within 180 days** to keep the account active
 - Once approved: replace the existing short links in `../tidyHacks/data/products.json` with your official Associates tracking links and rebuild
 
-### 2. Add affiliate links for products #6 & #7
+### 2. Add affiliate links for product #7
 
 Jonas needs to find US/UK Amazon affiliate links for:
-- Handheld Vacuum Sealer
-- Cordless Mini Handheld Vacuum
+- Cordless Mini Handheld Vacuum (#7 — the only one still missing)
 
 Add them via the Studio (`python3 ../tidyHacks/scripts/server.py` → http://localhost:8765), then run `build_site.py`, commit, and push.
 
