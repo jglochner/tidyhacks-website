@@ -168,7 +168,7 @@
         : '';
       return `
         <article class="card" data-name="${escapeHtml(p.product_name)}" data-niche="${escapeHtml(p.niche || '')}" data-asin="${escapeHtml(p.asin || '')}">
-          <a class="card-link" data-click="card" href="${link}" target="_blank" rel="noopener sponsored nofollow" aria-label="View ${escapeHtml(p.product_name)} on Amazon">
+          <a class="card-link" data-click="card" href="${link}" rel="sponsored nofollow" aria-label="View ${escapeHtml(p.product_name)} on Amazon">
             <div class="thumb">${img}</div>
             <div class="card-label">${escapeHtml(p.product_name)}</div>
           </a>
