@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>TidyHacks — the best Amazon home & kitchen finds</title>
+<title>Tidy Hacks — the best Amazon home & kitchen finds</title>
 <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><circle cx='50' cy='50' r='50' fill='white'/><text x='50' y='73' font-family='Arial Black,Arial,sans-serif' font-size='68' font-weight='900' text-anchor='middle' fill='%237c3aed'>T</text></svg>">
 <script>
   !function(t,e){var o,n,p,r;e.__SV||(window.posthog=e,e._i=[],e.init=function(i,s,a){function g(t,e){var o=e.split(".");2==o.length&&(t=t[o[0]],e=o[1]),t[e]=function(){t.push([e].concat(Array.prototype.slice.call(arguments,0)))}}(p=t.createElement("script")).type="text/javascript",p.crossOrigin="anonymous",p.async=!0,p.src=s.api_host.replace(".i.posthog.com","-assets.i.posthog.com")+"/static/array.js",(r=t.getElementsByTagName("script")[0]).parentNode.insertBefore(p,r);var u=e;for(void 0!==a?u=e[a]=[]:a="posthog",u.people=u.people||[],u.toString=function(t){var e="posthog";return"posthog"!==a&&(e+="."+a),t||(e+=" (stub)"),e},u.people.toString=function(){return u.toString(1)+" (stub)"},o="init capture register register_once register_for_session unregister unregister_for_session getFeatureFlag getFeatureFlagPayload isFeatureEnabled reloadFeatureFlags updateEarlyAccessFeatureEnrollment getEarlyAccessFeatures on onFeatureFlags onSessionId getSurveys getActiveMatchingSurveys renderSurvey canRenderSurvey identify setPersonProperties group resetGroups setPersonPropertiesForFlags resetPersonPropertiesForFlags setGroupPropertiesForFlags resetGroupPropertiesForFlags reset get_distinct_id getGroups get_session_id get_session_replay_url alias set_config startSessionRecording stopSessionRecording sessionRecordingStarted captureException loadToolbar get_property getSessionProperty createPersonProfile opt_in_capturing opt_out_capturing has_opted_in_capturing has_opted_out_capturing clear_opt_in_out_capturing debug".split(" "),n=0;n<o.length;n++)g(u,o[n]);e._i.push([i,s,a])},e.__SV=1)}(document,window.posthog||[]);
@@ -21,28 +21,27 @@
 <style>
   :root {
     --purple:#8b6ff0; --purple-dark:#6c4fd6; --purple-soft:#a78bfa;
-    --bg:#b9a7f4; --card:#ffffff; --ink:#1f1a33; --muted:#6b6480;
-    --line:#ece8fb; --shadow:0 6px 22px rgba(60,40,120,.12);
+    --bg:#baaff5; --card:#ffffff; --ink:#1f1a33; --muted:#6b6480;
+    --line:#ece8fb; --shadow:0 6px 20px rgba(0,0,0,0.22);
   }
   * { box-sizing:border-box; }
   html, body { margin:0; }
   body {
     font:16px/1.5 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
     color:var(--ink);
-    background:linear-gradient(180deg,#c4b4f7 0%, #b9a7f4 280px, #f4f1fe 280px, #f4f1fe 100%);
-    background-attachment:fixed;
+    background: var(--bg);
     min-height:100vh;
   }
   .wrap { max-width:680px; margin:0 auto; padding:28px 18px 60px; }
 
   /* ---- header ---- */
-  .profile { text-align:center; color:#2a2342; }
+  .profile { text-align:center; color:#fff; }
   .avatar {
     width:128px; height:128px; border-radius:50%; object-fit:cover;
     border:4px solid #fff; box-shadow:var(--shadow); margin:6px auto 14px; display:block;
   }
   .name { font-size:30px; font-weight:800; letter-spacing:-.5px; margin:0; }
-  .tagline { font-size:16px; margin:8px 0 16px; color:#3a3157; }
+  .tagline { font-size:16px; margin:8px 0 16px; color:rgba(255,255,255,0.85); }
   .socials { display:flex; justify-content:center; gap:18px; margin-bottom:6px; }
   .socials a {
     width:42px; height:42px; border-radius:50%; background:rgba(255,255,255,.55);
@@ -81,6 +80,7 @@
 
   .card {
     border-radius:14px; overflow:hidden; box-shadow:var(--shadow);
+    border:1.5px solid rgba(255,255,255,0.55);
     transition:transform .15s, box-shadow .15s;
   }
   .card:hover { transform:translateY(-3px); box-shadow:0 12px 30px rgba(60,40,120,.18); }
@@ -94,8 +94,8 @@
   .thumb img { position:absolute; inset:0; width:100%; height:100%; object-fit:cover; }
   .card-label {
     background:var(--purple); color:#fff; text-align:center;
-    padding:9px 8px; font-size:12px; font-weight:700; line-height:1.3;
-    transition:background .15s, color .15s;
+    padding:9px 8px; font-size:12px; font-weight:400; line-height:1.3;
+    letter-spacing:0.02em; transition:background .15s, color .15s;
   }
   .card:hover .card-label { background:#fff; color:var(--purple); }
 
@@ -109,7 +109,7 @@
   <div class="wrap">
     <div class="profile">
       <img class="avatar" src="images/avatar.png" alt="TidyHacks logo">
-      <h1 class="name">TidyHacks</h1>
+      <h1 class="name">Tidy Hacks</h1>
       <p class="tagline">✨ Sharing the best Amazon finds ✨</p>
       <nav class="socials" aria-label="Social links">
         <a href="https://instagram.com/tidyhacks_" target="_blank" rel="noopener" aria-label="Instagram">
@@ -117,6 +117,15 @@
         </a>
         <a href="https://tiktok.com/@tidyhacks_" target="_blank" rel="noopener" aria-label="TikTok">
           <svg viewBox="0 0 24 24" fill="currentColor"><path d="M16.5 3c.3 2.1 1.6 3.7 3.7 3.9v2.4c-1.2.1-2.4-.2-3.5-.8v5.9c0 3-2.2 5.2-5.1 5.2A5 5 0 0 1 6.5 14c.1-2.6 2.2-4.7 4.8-4.7.3 0 .5 0 .8.1v2.5c-.3-.1-.5-.1-.8-.1a2.3 2.3 0 0 0 .1 4.6 2.3 2.3 0 0 0 2.3-2.4V3h2.8z"/></svg>
+        </a>
+        <a href="https://www.youtube.com/@tidyhacks_" target="_blank" rel="noopener" aria-label="YouTube">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M23 7s-.3-2-1.2-2.8c-1.1-1.2-2.4-1.2-3-1.3C16.6 2.8 12 2.8 12 2.8s-4.6 0-6.8.2c-.6.1-1.9.1-3 1.3C1.3 5 1 7 1 7S.8 9.2.8 11.5v2.1c0 2.2.2 4.5.2 4.5s.3 2 1.2 2.8c1.1 1.2 2.6 1.1 3.3 1.2C7.6 22.2 12 22.2 12 22.2s4.6 0 6.8-.3c.6-.1 1.9-.1 3-1.3.9-.8 1.2-2.8 1.2-2.8s.2-2.2.2-4.5v-2C23.2 9.2 23 7 23 7zM9.7 15.5V8.3l8.1 3.6-8.1 3.6z"/></svg>
+        </a>
+        <a href="https://www.facebook.com/profile.php?id=61590217031403" target="_blank" rel="noopener" aria-label="Facebook">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+        </a>
+        <a href="mailto:info@tidyhacks.co" aria-label="Email">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/><polyline points="2,4 12,13 22,4"/></svg>
         </a>
       </nav>
     </div>
